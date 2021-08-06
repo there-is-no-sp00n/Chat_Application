@@ -16,11 +16,16 @@ def broadcast(message):
     for client in CLIENTS:
         client.send(message)
 
+def message_broadcast(message, sender):
+    for client in CLIENTS:
+        if client != sender:
+            client.send(message)
+
 def handle(client):
     while True:
         try:
             message = client.recv(1024)
-            broadcast(message)
+            message_broadcast(message, client)
         except:
             index = CLIENTS.index(client)
             CLIENTS.remove(client)

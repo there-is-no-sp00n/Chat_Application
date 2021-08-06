@@ -25,7 +25,7 @@ def receive():
 
 def write():
     while True:
-        message = f"{nickname}: {input('')}"
+        message = f"{nickname}: {input('{}: '.format(nickname))} \n"
         CLIENT.send(message.encode('ascii'))
 
 
